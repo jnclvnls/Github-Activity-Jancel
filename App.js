@@ -12,7 +12,7 @@ const calculate = (p, c, op) => {
   return c;
 };
 
-// Easter egg: 12345678 ÷ 143 shows a message (143 = "I love you" in pager code)
+
 const LOVE = "I LOVE YOU";
 const isText = (s) => s === "Error" || s === LOVE;
 
@@ -61,7 +61,7 @@ export default function App() {
     if (!prev.operation || prev.previous === "") return prev;
     const p = parseFloat(prev.previous);
     const c = parseFloat(prev.current);
-    if (prev.operation === '/' && prev.previous === "12345678" && prev.current === "143") {
+    if (prev.operation === '+' && prev.previous === "1" && prev.current === "1") {
       return { ...prev, current: LOVE, previous: "", operation: null, resetScreen: true };
     }
     const res = calculate(p, c, prev.operation);
@@ -133,11 +133,11 @@ export default function App() {
       <style>{`
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif; }
         :root {
-          --bg: #006aff; --shell: #cfe2ff; --display: #ffffff; --ink: #18212f; --muted: #7a8699;
-          --key: #ffffff; --key-fn: #818387; --key-op: #6e0ccf; --op-ink: #fdfeff;
-          --accent: #2f5bea; --accent-ink: #ffffff; --line: #e1e7f0; --mem: #e8f5ee; --mem-ink: #1f7a4d;
+          --bg: #eef2fb; --shell: #f7f9fe; --display: #ffffff; --ink: #1f2a44; --muted: #8a94ad;
+          --key: #ffffff; --key-fn: #dce3f5; --key-op: #e4ebff; --op-ink: #3558e0;
+          --accent: #3558e0; --accent-ink: #ffffff; --line: #e1e7f0; --mem: #e8f5ee; --mem-ink: #1f7a4d;
         }
-        body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg); padding: 16px; }
+        body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, #eef2fb, #dfe8fb); padding: 16px; }
         .calculator { position: relative; width: 100%; max-width: 360px; background: var(--shell); border-radius: 28px; padding: 20px; box-shadow: 0 1px 0 #fff inset, 0 24px 48px -16px rgba(36,56,96,0.28); overflow: hidden; }
         .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; min-height: 28px; }
         .badge { font-size: 0.75rem; font-weight: 600; color: var(--mem-ink); background: var(--mem); padding: 4px 10px; border-radius: 999px; }
@@ -156,14 +156,14 @@ export default function App() {
         .btn-num { background: var(--key); color: var(--ink); box-shadow: 0 1px 2px rgba(36,56,96,0.1); }
         .btn-num:hover { background: #f0f4fa; }
         .btn-fn { background: var(--key-fn); color: var(--ink); font-size: 1rem; }
-        .btn-fn:hover { background: #d1dbe9; }
+        .btn-fn:hover { background: #cbd5ee; }
         .btn-mem { background: transparent; color: var(--muted); font-size: 0.85rem; font-weight: 600; height: 36px; border-radius: 10px; }
         .btn-mem:hover { background: var(--key-fn); color: var(--ink); }
         .btn-op { background: var(--key-op); color: var(--op-ink); font-size: 1.4rem; }
-        .btn-op:hover { background: #c6d6f8; }
+        .btn-op:hover { background: #d3deff; }
         .btn-op.active { background: var(--accent); color: var(--accent-ink); }
         .btn-eq { background: var(--accent); color: var(--accent-ink); font-size: 1.5rem; }
-        .btn-eq:hover { background: #2450d2; }
+        .btn-eq:hover { background: #2a47c4; }
         .span2 { grid-column: span 2; }
         .history { position: absolute; inset: 0; background: var(--shell); padding: 20px; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.25s ease; z-index: 2; }
         .history.open { transform: translateY(0); }
@@ -190,7 +190,6 @@ export default function App() {
         </button>
 
         <div className="keypad">
-         
           <button className="btn btn-fn" onClick={() => unary('square')}>x²</button>
           <button className="btn btn-fn" onClick={() => unary('sqrt')}>√</button>
           <button className="btn btn-fn" onClick={() => unary('inverse')}>1/x</button>
